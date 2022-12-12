@@ -1,12 +1,31 @@
-<div class="h-56 grid grid-cols-2 gap-4 content-start p-5" role="main">
+<div class="p-10 " role="main">
   <div>
-    <h1 class="text-3xl font-bold underline">
-      EDID parser - Angular </h1>
-    <input type="text" placeholder="filter here" />
+    <div class="flex justify-left pl-10">
+      <div class="mb-3 xl:w-96">
+        <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-gray-700">FILTER BY NAME</label>
+        <input (keyup)="onKeyUpEvent($event)" type="text" class="
+              form-control
+              block
+              w-full
+              px-3
+              py-1.5
+              text-base
+              font-normal
+              text-gray-700
+              bg-white bg-clip-padding
+              border border-solid border-gray-300
+              rounded
+              transition
+              ease-in-out
+              m-0
+              focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+            " id="exampleFormControlInput1" placeholder="FILTER BY NAME" />
+      </div>
+    </div>
   </div>
-  <p></p>
-  <app-card *ngFor="let device of devices" [name]="device.Name" [NativeResolution]="device.NativeResolution"
-    [Size]="device.Size" [status]="device.status">
-  </app-card>
-
+  <div class="grid grid-cols-3 gap-4 content-center p-5 ">
+    <app-card *ngFor="let device of devices" [name]="device.Name" [NativeResolution]="device.NativeResolution"
+      [Size]="device.Size" [status]="device.status">
+    </app-card>
+  </div>
 </div>

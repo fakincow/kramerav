@@ -8,23 +8,29 @@ import { StabDataService } from './services/stab-data-servise';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   public devices: Array<DeviceCard> = [];
+  public filter: string = '';
   public settingsLoaded: boolean = false;
   title = 'angular-test-kramerav';
-  constructor(private stabDataService : StabDataService) { }
+  constructor(private stabDataService: StabDataService) { }
 
   ngOnInit() {
 
     this.fetchSettings();
   }
 
+  onKeyUpEvent(event: any) {
+    this.filter = event.target.value.toLowerCase();
+    this.fetchSettings();// it is local
+  }
   fetchSettings() {
-    let lobbyData =  this.stabDataService.getDeviceList();
-   console.log('>>>>>>', lobbyData)
-   this.devices = lobbyData.devices;
-   console.log('>dddd>>>>>', this.devices)
-    setTimeout(() => { this.settingsLoaded = true }, 1500);
+    let lobbyData = this.stabDataService.getDeviceList();
+    this.devices = lobbyData.devices;
+    if (this.filter.length > 0) {
+      this.devices = this.devices.filter(item => (item.Name.toLowerCase()).indexOf(this.filter) > -1)
+    }
+
   }
 
 }

@@ -6,7 +6,12 @@ import { DeviceCard } from 'src/app/models/DeviceCard';
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss']
 })
-export class CardComponent {
+export class CardComponent implements OnInit {
+  ngOnInit(): void {
+   if(this.status != 0){
+    this.nameTitleClass = 'connected'
+   }
+  }
 
   @Input() name: String = 'name goes here';
   @Input() NativeResolution:string="device.NativeResolution"
@@ -14,6 +19,8 @@ export class CardComponent {
   @Input() status:number =0
   public selected:boolean = false;
   public cardClass:string = 'default'
+  public nameTitleClass:string = 'disconnected'
+
   onClickEvent(event: any) {
     this.selected = !this.selected;
     console.log('selected',this.selected);

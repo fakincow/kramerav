@@ -1,0 +1,12 @@
+<div class="h-56 grid grid-cols-2 gap-4 content-start p-5" role="main">
+  <div>
+    <h1 class="text-3xl font-bold underline">
+      EDID parser - Angular </h1>
+    <input type="text" placeholder="filter here" />
+  </div>
+  <p></p>
+  <app-card *ngFor="let device of devices" [name]="device.Name" [NativeResolution]="device.NativeResolution"
+    [Size]="device.Size" [status]="device.status">
+  </app-card>
+
+</div>
